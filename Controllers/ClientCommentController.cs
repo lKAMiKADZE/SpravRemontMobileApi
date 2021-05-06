@@ -14,7 +14,7 @@ namespace SpravRemontMobileApi.Controllers
 {
     [ApiController]
     [Microsoft.AspNetCore.Mvc.Route("[controller]")]
-    public class ClientCommentController : ControllerBase
+    public class ClientCommentController : ApiController
     {
 
 

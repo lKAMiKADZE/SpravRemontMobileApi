@@ -1,29 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
-
-using Microsoft.Azure.Mobile.Server.Config;
-using Microsoft.Azure.Mobile.Server;
-using System.Web.Http.Tracing;
-using System.Web;
-using app20193Service.ModelControllers;
-using System.Data.SqlClient;
+using SpravRemontMobileApi.Constant;
+using SpravRemontMobileApi.ModelControllers;
+using SpravRemontMobileApi.ModelControllers.Request;
+using SpravRemontMobileApi.ModelControllers.Response;
 using Newtonsoft.Json;
-using app20193Service.Constant;
+using Microsoft.AspNetCore.Mvc;
 
-
-using app20193Service.Lib;
-using System.Text;
-using app20193Service.DataObjects;
-using app20193Service.ModelControllers.Response;
-using System.Runtime.InteropServices;
-
-namespace app20193Service.Controllers
+namespace SpravRemontMobileApi.Controllers
 {
-    [MobileAppController]
+    [ApiController]
+    [Microsoft.AspNetCore.Mvc.Route("[controller]")]
     public class GetReklamaSpravController : ApiController
     {
         public string Get()

@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Web.Http;
-using app20193Service.Constant;
-using app20193Service.ModelControllers;
-using app20193Service.ModelControllers.Request;
-using app20193Service.ModelControllers.Response;
-using Microsoft.Azure.Mobile.Server.Config;
+using SpravRemontMobileApi.Constant;
+using SpravRemontMobileApi.ModelControllers;
+using SpravRemontMobileApi.ModelControllers.Request;
+using SpravRemontMobileApi.ModelControllers.Response;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Mvc;
 
-namespace app20193Service.Controllers
+namespace SpravRemontMobileApi.Controllers
 {
-    [MobileAppController]
+    [ApiController]
+    [Microsoft.AspNetCore.Mvc.Route("[controller]")]
     public class LoadFiltrShopsController : ApiController // NOT ACTIVE
     {
         // GET api/ItemsShop
