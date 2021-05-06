@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-using Microsoft.Azure.Mobile.Server;
 using Newtonsoft.Json;
 using System.Data.SqlClient;
 
-namespace app20193Service.DataObjects
+namespace SpravRemontMobileApi.DataObjects
 {
     public class Metro
     {

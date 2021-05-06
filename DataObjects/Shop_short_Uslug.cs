@@ -1,10 +1,10 @@
-﻿using Microsoft.Azure.Mobile.Server;
+﻿
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
-namespace app20193Service.DataObjects
+namespace SpravRemontMobileApi.DataObjects
 {
     public class Shop_short_Uslug
     {
