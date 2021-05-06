@@ -7,13 +7,13 @@ using SpravRemontMobileApi.Constant;
 
 using SpravRemontMobileApi.ModelControllers.Response;
 using SpravRemontMobileApi.ModelControllers.Request;
-using Microsoft.AspNetCore.Mvc;
+//using Microsoft.AspNetCore.Mvc;
 using System.Web.Http;
 
 namespace SpravRemontMobileApi.Controllers
 {
-    [ApiController]
-    [Microsoft.AspNetCore.Mvc.Route("[controller]")]
+    //[ApiController]
+    [Route("[controller]")]
     public class ClientCommentController : ApiController
     {
 

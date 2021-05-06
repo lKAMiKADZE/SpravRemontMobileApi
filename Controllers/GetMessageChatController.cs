@@ -9,8 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SpravRemontMobileApi.Controllers
 {
-    [ApiController]
-    [Microsoft.AspNetCore.Mvc.Route("[controller]")]
+    //[ApiController]
+    [Route("[controller]")]
     public class GetMessageChatController : ApiController
     {
         // GET api/ItemsShop

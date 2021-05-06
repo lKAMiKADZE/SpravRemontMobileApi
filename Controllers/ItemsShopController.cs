@@ -5,12 +5,12 @@ using SpravRemontMobileApi.ModelControllers;
 using SpravRemontMobileApi.ModelControllers.Request;
 using SpravRemontMobileApi.ModelControllers.Response;
 using Newtonsoft.Json;
-using Microsoft.AspNetCore.Mvc;
+//using Microsoft.AspNetCore.Mvc;
 
 namespace SpravRemontMobileApi.Controllers
 {
-    [ApiController]
-    [Microsoft.AspNetCore.Mvc.Route("[controller]")]
+    //[ApiController]
+    [Route("[controller]")]
     public class ItemsShopController : ApiController
     {
         // GET api/ItemsShop

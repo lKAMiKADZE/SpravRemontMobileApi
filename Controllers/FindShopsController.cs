@@ -1,16 +1,19 @@
 ﻿using System;
-using System.Web.Http;
-using SpravRemontMobileApi.Constant;
-using SpravRemontMobileApi.ModelControllers;
-using SpravRemontMobileApi.ModelControllers.Request;
-using SpravRemontMobileApi.ModelControllers.Response;
-using Newtonsoft.Json;
-using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
-namespace app20193Service.Controllers
+using Newtonsoft.Json;
+using SpravRemontMobileApi.Constant;
+
+
+using SpravRemontMobileApi.ModelControllers.Response;
+using SpravRemontMobileApi.ModelControllers.Request;
+//using Microsoft.AspNetCore.Mvc;
+using System.Web.Http;
+
+namespace SpravRemontMobileApi.Controllers
 {
-    [ApiController]
-    [Microsoft.AspNetCore.Mvc.Route("[controller]")]
+    //[ApiController]
+    [Route("[controller]")]
     public class FindShopsController : ApiController
     {
         // GET api/
