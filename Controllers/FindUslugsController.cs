@@ -5,7 +5,7 @@ using SpravRemontMobileApi.ModelControllers;
 using SpravRemontMobileApi.ModelControllers.Request;
 using SpravRemontMobileApi.ModelControllers.Response;
 using Newtonsoft.Json;
-using Microsoft.AspNetCore.Mvc;
+//using Microsoft.AspNetCore.Mvc;
 
 namespace SpravRemontMobileApi.Controllers
 {
