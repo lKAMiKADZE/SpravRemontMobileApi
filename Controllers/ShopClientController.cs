@@ -1,21 +1,22 @@
 ﻿using System;
-using System.Web.Http;
+
 using SpravRemontMobileApi.Constant;
 using SpravRemontMobileApi.ModelControllers;
 using SpravRemontMobileApi.ModelControllers.Request;
 using SpravRemontMobileApi.ModelControllers.Response;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Mvc;
 
 namespace SpravRemontMobileApi.Controllers
 {
-    //[ApiController]
+    [ApiController]
     [Route("[controller]")]
-    public class ShopClientController : ApiController
+    public class ShopClientController : ControllerBase
     {
 
 
         // GET api/<controller>
-        public string Get([FromUri]RequestShopClient req)
+        public string Get([FromQuery]RequestShopClient req)
         {
             //MobileAppSettingsDictionary settings = this.Configuration.GetMobileAppSettingsProvider().GetMobileAppSettings();
             //ITraceWriter traceWriter = this.Configuration.Services.GetTraceWriter();

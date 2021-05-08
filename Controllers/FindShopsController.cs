@@ -7,18 +7,18 @@ using SpravRemontMobileApi.Constant;
 
 using SpravRemontMobileApi.ModelControllers.Response;
 using SpravRemontMobileApi.ModelControllers.Request;
-//using Microsoft.AspNetCore.Mvc;
-using System.Web.Http;
+using Microsoft.AspNetCore.Mvc;
+
 using SpravRemontMobileApi.ModelControllers;
 
 namespace SpravRemontMobileApi.Controllers
 {
-    //[ApiController]
+    [ApiController]
     [Route("[controller]")]
-    public class FindShopsController : ApiController
+    public class FindShopsController : ControllerBase
     {
         // GET api/
-        public string Get([FromUri]RequestShopClient req)
+        public string Get([FromQuery]RequestShopClient req)
         {
             string json = "Empty";
 
@@ -36,7 +36,7 @@ namespace SpravRemontMobileApi.Controllers
         }
 
 
-        public string Post([Microsoft.AspNetCore.Mvc.FromBody]RequestFindShops req)
+        public string Post([FromBody]RequestFindShops req)
         {
             string json = "";
 

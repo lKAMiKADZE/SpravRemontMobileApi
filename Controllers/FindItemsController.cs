@@ -3,22 +3,19 @@ using System.Collections.Generic;
 
 using Newtonsoft.Json;
 using SpravRemontMobileApi.Constant;
-
-
 using SpravRemontMobileApi.ModelControllers.Response;
 using SpravRemontMobileApi.ModelControllers.Request;
-//using Microsoft.AspNetCore.Mvc;
-using System.Web.Http;
+using Microsoft.AspNetCore.Mvc;
 using SpravRemontMobileApi.ModelControllers;
 
 namespace SpravRemontMobileApi.Controllers
 {
-    //[ApiController]
+    [ApiController]
     [Route("[controller]")]
-    public class FindItemsController : ApiController
+    public class FindItemsController : ControllerBase
     {
         // GET api/ItemsShop
-        public string Get([FromUri]RequestShopClient req)
+        public string Get([FromQuery]RequestShopClient req)
         {
             string json = "Empty";
 

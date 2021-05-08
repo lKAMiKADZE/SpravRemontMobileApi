@@ -1,25 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
 
-using Newtonsoft.Json;
 using SpravRemontMobileApi.Constant;
-
-
-using SpravRemontMobileApi.ModelControllers.Response;
+using SpravRemontMobileApi.ModelControllers;
 using SpravRemontMobileApi.ModelControllers.Request;
-//using Microsoft.AspNetCore.Mvc;
-using System.Web.Http;
+using SpravRemontMobileApi.ModelControllers.Response;
+using Newtonsoft.Json;
+using Microsoft.AspNetCore.Mvc;
+
 
 namespace SpravRemontMobileApi.Controllers
 {
-    //[ApiController]
+    [ApiController]
     [Route("[controller]")]
-    public class ClientCommentController : ApiController
+    public class ClientCommentController : ControllerBase
     {
 
 
         // GET api/<controller>
-        public string Get([FromUri]RequestClientComment req)
+        public string Get([FromQuery]RequestClientComment req)//[FromUri]
         {
             //MobileAppSettingsDictionary settings = this.Configuration.GetMobileAppSettingsProvider().GetMobileAppSettings();
             //ITraceWriter traceWriter = this.Configuration.Services.GetTraceWriter();

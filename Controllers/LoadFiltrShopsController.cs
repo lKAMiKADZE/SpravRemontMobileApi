@@ -1,19 +1,20 @@
 ﻿using System;
-using System.Web.Http;
+
 using SpravRemontMobileApi.Constant;
 using SpravRemontMobileApi.ModelControllers;
 using SpravRemontMobileApi.ModelControllers.Request;
 using SpravRemontMobileApi.ModelControllers.Response;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Mvc;
 
 namespace SpravRemontMobileApi.Controllers
 {
-    //[ApiController]
+    [ApiController]
     [Route("[controller]")]
-    public class LoadFiltrShopsController : ApiController // NOT ACTIVE
+    public class LoadFiltrShopsController : ControllerBase // NOT ACTIVE
     {
         // GET api/ItemsShop
-        public string Get([FromUri]RequestLoadFiltrShops req)
+        public string Get([FromQuery]RequestLoadFiltrShops req)
         {
             string json = "";
 
