@@ -3,12 +3,9 @@ using System.Collections.Generic;
 
 using Newtonsoft.Json;
 using SpravRemontMobileApi.Constant;
-
-
 using SpravRemontMobileApi.ModelControllers.Response;
 using SpravRemontMobileApi.ModelControllers.Request;
 using Microsoft.AspNetCore.Mvc;
-
 using SpravRemontMobileApi.ModelControllers;
 
 namespace SpravRemontMobileApi.Controllers
@@ -35,7 +32,7 @@ namespace SpravRemontMobileApi.Controllers
             return json;
         }
 
-
+        [HttpPost]
         public string Post([FromBody]RequestFindShops req)
         {
             string json = "";

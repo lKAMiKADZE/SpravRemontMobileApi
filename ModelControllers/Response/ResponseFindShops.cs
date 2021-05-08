@@ -20,8 +20,9 @@ namespace SpravRemontMobileApi.ModelControllers.Response
         public  void GetFindShops(string connectionString, RequestFindShops req)
         {
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
+            //using (SqlConnection connection = new SqlConnection(connectionString))
+            SqlConnection connection = new SqlConnection(connectionString);
+            
                 Shops_short = new List<Shop_short>();
 
                 ////////////
@@ -114,7 +115,7 @@ namespace SpravRemontMobileApi.ModelControllers.Response
                     shgeo.Y,
                     
                     (
-                        SELECT sum(CC.Count_star) AS avg_star FROM SPAVREMONT.Comment_client CC 
+                        SELECT ISNULL(sum(CC.Count_star),0) AS avg_star FROM SPAVREMONT.Comment_client CC 
                         WHERE CC.ID_SHOP=sh.ID_Shop
                     ) AS AVG_Star,
                     (
@@ -177,7 +178,7 @@ namespace SpravRemontMobileApi.ModelControllers.Response
                     shgeo.Y,
                     
                     (
-                        SELECT sum(CC.Count_star) AS avg_star FROM SPAVREMONT.Comment_client CC 
+                        SELECT ISNULL(sum(CC.Count_star),0) AS avg_star FROM SPAVREMONT.Comment_client CC 
                         WHERE CC.ID_SHOP=sh.ID_Shop
                     ) AS AVG_Star,
                     (
@@ -254,8 +255,8 @@ namespace SpravRemontMobileApi.ModelControllers.Response
                     int shIMG_LOGO_index = reader.GetOrdinal("IMG_LOGO");
 
                     //int katKategorIndex = reader.GetOrdinal("ID_KATEGOR");
-                    int shgeoXIndex = reader.GetOrdinal("X");
-                    int shgeoYIndex = reader.GetOrdinal("Y");
+                    //int shgeoXIndex = reader.GetOrdinal("X");
+                    //int shgeoYIndex = reader.GetOrdinal("Y");
 
 
                     while (reader.Read()) // построчно считываем данные
@@ -280,11 +281,11 @@ namespace SpravRemontMobileApi.ModelControllers.Response
                         // Вывести подсчет дистанции между двумя точками
                         float distanse = -1;
                         double distanseResult = 0;
-                        float xPhone = req.geoPhone.X;
-                        float yPhone = req.geoPhone.Y;
+                        //float xPhone = req.geoPhone.X;
+                       // float yPhone = req.geoPhone.Y;
 
-                        distanse = (xPhone - geoShop.X) * (xPhone - geoShop.X) + (yPhone - geoShop.Y) * (yPhone - geoShop.Y);
-                        distanseResult = Math.Sqrt(distanse);
+                        //distanse = (xPhone - geoShop.X) * (xPhone - geoShop.X) + (yPhone - geoShop.Y) * (yPhone - geoShop.Y);
+                        //distanseResult = Math.Sqrt(distanse);
                         
 
                         // подсчет среднего кол-во звезд
@@ -324,9 +325,9 @@ namespace SpravRemontMobileApi.ModelControllers.Response
                 }
 
 
-                distanseSortComparer dsc = new distanseSortComparer();
+                //distanseSortComparer dsc = new distanseSortComparer();
 
-                Shops_short.Sort(dsc);
+                //Shops_short.Sort(dsc);
 
                 if(tmp_count>0)
                     Shops_short.Insert(0, shop_ShortFirst);
@@ -334,7 +335,7 @@ namespace SpravRemontMobileApi.ModelControllers.Response
 
                 
                 
-            }//return shops;
+            //}//return shops;
         }
 
     }
