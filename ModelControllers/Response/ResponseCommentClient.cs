@@ -159,12 +159,12 @@ namespace SpravRemontMobileApi.ModelControllers.Response
 
             int number = 0;
 
-            using (SqlConnection connection = new SqlConnection(Constants.connectDB))
-            {
+            SqlConnection connection = new SqlConnection(Constants.connectDB);
+            
                 connection.Open();
                 SqlCommand command = new SqlCommand(sqlExpression, connection);
                 number = command.ExecuteNonQuery();
-            }
+            
 
 
             if (number > 0)

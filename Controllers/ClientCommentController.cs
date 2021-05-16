@@ -50,7 +50,7 @@ namespace SpravRemontMobileApi.Controllers
         
 
         // POST api/<controller>
-        public string Post([Microsoft.AspNetCore.Mvc.FromBody]RequestClientComment req)
+        public string Post([FromBody]RequestClientComment req)
         {
             //ITraceWriter traceWriter = this.Configuration.Services.GetTraceWriter();
             ResponseCommentClient resp = new ResponseCommentClient();
@@ -70,14 +70,6 @@ namespace SpravRemontMobileApi.Controllers
             
         }
 
-        // PUT api/<controller>/5
-        public void Put(int id, [Microsoft.AspNetCore.Mvc.FromBody]string value)
-        {
-        }
-
-        // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
-        }
+       
     }
 }
