@@ -17,6 +17,7 @@ namespace SpravRemontMobileApi.Controllers
 
 
         // GET api/<controller>
+        [HttpGet]
         public string Get([FromQuery]RequestClientComment req)//[FromUri]
         {
             //MobileAppSettingsDictionary settings = this.Configuration.GetMobileAppSettingsProvider().GetMobileAppSettings();
@@ -25,11 +26,11 @@ namespace SpravRemontMobileApi.Controllers
             string step_err = "";
             try
             {
-                if (req.ID_shop != null)
+                if (req.id_shop != null)
                 {
                     step_err += "enter if = ";                   
                     ResponseCommentClient resp = new ResponseCommentClient();                    
-                    resp.GetCommentShop(Constants.connectDB, req.ID_shop);
+                    resp.GetCommentShop(Constants.connectDB, req.id_shop);
                     step_err += "get comment = ";
                     json = JsonConvert.SerializeObject(resp);
                     step_err += "convert json = ";
@@ -46,9 +47,9 @@ namespace SpravRemontMobileApi.Controllers
 
                 return json;
         }
-            
-        
 
+
+        [HttpPost]
         // POST api/<controller>
         public string Post([FromBody]RequestClientComment req)
         {

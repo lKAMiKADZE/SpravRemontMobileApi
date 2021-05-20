@@ -8,7 +8,7 @@ namespace SpravRemontMobileApi.ModelControllers.Request
     public class RequestClientComment
     {
 
-        public string ID_shop { get; set; }
+        public string id_shop { get; set; }
              
         public string Email { get; set; }
         public string Name { get; set; }

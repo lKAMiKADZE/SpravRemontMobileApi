@@ -20,11 +20,12 @@ namespace SpravRemontMobileApi.ModelControllers.Response
            // Comment_client = new List<CommentClient>();
         }
 
-        public  void GetCommentShop(string connectionString, string id_shop)
+        public void GetCommentShop(string connectionString, string id_shop)
         {
             Comments = new List<CommentClient>();
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
+            SqlConnection connection = new SqlConnection(connectionString);
+
+
                 string sqlExpression = @"SELECT 
                     COMCL.ID_comment_client,
                     COMCL.ID_shop,
@@ -39,67 +40,67 @@ namespace SpravRemontMobileApi.ModelControllers.Response
 
                         FROM SPAVREMONT.Comment_Client COMCL
                     LEFT JOIN SPAVREMONT.Comment_shop CS ON CS.id_comment_shop=COMCL.id_comment_shop
-                    WHERE COMCL.id_shop='" + id_shop+ @"'
+                    WHERE COMCL.id_shop='" + id_shop + @"'
                         AND COMCL.DELETED=0
                         AND COMCL.VISIBLE=1
                     ORDER BY COMCL.Date_add DESC
                     ";
 
-                connection.Open();
-                SqlCommand command = new SqlCommand();
-                command.CommandText = sqlExpression;
-                command.Connection = connection;
-                SqlDataReader reader = command.ExecuteReader();
+            connection.Open();
+            SqlCommand command = new SqlCommand();
+            command.CommandText = sqlExpression;
+            command.Connection = connection;
+            SqlDataReader reader = command.ExecuteReader();
 
-                if (reader.HasRows) // если есть данные
+            if (reader.HasRows) // если есть данные
+            {
+
+                //int genreIDIndex = reader.GetOrdinal("GenreID");
+                //...
+                //while...
+                //GenreID = reader.IsDBNull(genreIDIndex) ? null : reader.GetInt32(genreIDIndex)
+
+                int ccID_comment_clientIndex = reader.GetOrdinal("ID_comment_client");
+                int ccID_shopIndex = reader.GetOrdinal("ID_shop");
+                int ccEmailIndex = reader.GetOrdinal("Email");
+                int ccNameIndex = reader.GetOrdinal("Name");
+                int ccCommentIndex = reader.GetOrdinal("Comment");
+                int ccCount_starIndex = reader.GetOrdinal("Count_star");
+                int ccDate_addIndex = reader.GetOrdinal("Date_add");
+                int csID_comment_shopIndex = reader.GetOrdinal("ID_comment_shop");
+                int csCommentShopIndex = reader.GetOrdinal("comment_shop");
+                int csDate_add_shopIndex = reader.GetOrdinal("Date_add_shop");
+
+
+
+
+                while (reader.Read()) // построчно считываем данные
                 {
-
-                    //int genreIDIndex = reader.GetOrdinal("GenreID");
-                    //...
-                    //while...
-                    //GenreID = reader.IsDBNull(genreIDIndex) ? null : reader.GetInt32(genreIDIndex)
-
-                    int ccID_comment_clientIndex = reader.GetOrdinal("ID_comment_client");
-                    int ccID_shopIndex = reader.GetOrdinal("ID_shop");
-                    int ccEmailIndex = reader.GetOrdinal("Email");
-                    int ccNameIndex = reader.GetOrdinal("Name");
-                    int ccCommentIndex = reader.GetOrdinal("Comment");
-                    int ccCount_starIndex = reader.GetOrdinal("Count_star");
-                    int ccDate_addIndex = reader.GetOrdinal("Date_add");
-                    int csID_comment_shopIndex = reader.GetOrdinal("ID_comment_shop");
-                    int csCommentShopIndex = reader.GetOrdinal("comment_shop");
-                    int csDate_add_shopIndex = reader.GetOrdinal("Date_add_shop");
-
-
-
-
-                    while (reader.Read()) // построчно считываем данные
+                    CommentShop comment_shop = new CommentShop
                     {
-                        CommentShop comment_shop = new CommentShop
-                        {
-                            ID_comment_shop = reader.IsDBNull(csID_comment_shopIndex) ? null : reader.GetString(csID_comment_shopIndex),
-                            Comment= reader.IsDBNull(csCommentShopIndex) ? null : reader.GetString(csCommentShopIndex)                            
-                        };
+                        ID_comment_shop = reader.IsDBNull(csID_comment_shopIndex) ? null : reader.GetString(csID_comment_shopIndex),
+                        Comment = reader.IsDBNull(csCommentShopIndex) ? null : reader.GetString(csCommentShopIndex)
+                    };
 
-                        if (!reader.IsDBNull(csDate_add_shopIndex))// если дата существует в запросе
-                            comment_shop.Date_add = reader.GetDateTime(csDate_add_shopIndex);
+                    if (!reader.IsDBNull(csDate_add_shopIndex))// если дата существует в запросе
+                        comment_shop.Date_add = reader.GetDateTime(csDate_add_shopIndex);
 
-                        CommentClient itemCommentClient = new CommentClient
-                        {
-                            Comment = reader.IsDBNull(ccCommentIndex) ? null : reader.GetString(ccCommentIndex),
-                            Comment_shop = comment_shop,
-                            Count_star = reader.IsDBNull(ccCount_starIndex) ? 0 : reader.GetByte(ccCount_starIndex),
-                            Date_add = reader.GetDateTime(ccDate_addIndex),
-                            //Email= reader.IsDBNull(ccCommentIndex) ? null : reader.GetString(ccCommentIndex),// аноним для всех, виден только для магазина
-                            ID_comment_client = reader.IsDBNull(ccID_comment_clientIndex) ? null : reader.GetString(ccID_comment_clientIndex),
-                            ID_shop = reader.IsDBNull(ccID_shopIndex) ? null : reader.GetString(ccID_shopIndex),
-                            Name = reader.IsDBNull(ccNameIndex) ? null : reader.GetString(ccNameIndex)
-                        };
+                    CommentClient itemCommentClient = new CommentClient
+                    {
+                        Comment = reader.IsDBNull(ccCommentIndex) ? null : reader.GetString(ccCommentIndex),
+                        Comment_shop = comment_shop,
+                        Count_star = reader.IsDBNull(ccCount_starIndex) ? 0 : reader.GetByte(ccCount_starIndex),
+                        Date_add = reader.GetDateTime(ccDate_addIndex),
+                        //Email= reader.IsDBNull(ccCommentIndex) ? null : reader.GetString(ccCommentIndex),// аноним для всех, виден только для магазина
+                        ID_comment_client = reader.IsDBNull(ccID_comment_clientIndex) ? null : reader.GetString(ccID_comment_clientIndex),
+                        ID_shop = reader.IsDBNull(ccID_shopIndex) ? null : reader.GetString(ccID_shopIndex),
+                        Name = reader.IsDBNull(ccNameIndex) ? null : reader.GetString(ccNameIndex)
+                    };
 
-                        Comments.Add(itemCommentClient);
+                    Comments.Add(itemCommentClient);
 
-                    }
                 }
+
 
 
 
@@ -113,15 +114,15 @@ namespace SpravRemontMobileApi.ModelControllers.Response
         public string SetCommentShop(string connectionString, RequestClientComment req)
         {
 
-            if (req.ID_shop == null ||
+            if (req.id_shop == null ||
                 req.Comment == null ||
                 req.Email == null ||
                 req.Name == null ||
-                req.Count_star==0
+                req.Count_star == 0
                 )
                 return "Не все поля заполнены";
-        
-                
+
+
 
             string sqlExpression = @"INSERT INTO SPAVREMONT.Comment_Client
                 (
@@ -138,7 +139,7 @@ namespace SpravRemontMobileApi.ModelControllers.Response
                 )
                 VALUES(
                 '" + Guid.NewGuid().ToString() + @"',
-                '" + req.ID_shop + @"',
+                '" + req.id_shop + @"',
                 NULL,
                 '" + req.Email + @"',
                 '" + req.Name + @"',
@@ -160,11 +161,11 @@ namespace SpravRemontMobileApi.ModelControllers.Response
             int number = 0;
 
             SqlConnection connection = new SqlConnection(Constants.connectDB);
-            
-                connection.Open();
-                SqlCommand command = new SqlCommand(sqlExpression, connection);
-                number = command.ExecuteNonQuery();
-            
+
+            connection.Open();
+            SqlCommand command = new SqlCommand(sqlExpression, connection);
+            number = command.ExecuteNonQuery();
+
 
 
             if (number > 0)
@@ -172,7 +173,7 @@ namespace SpravRemontMobileApi.ModelControllers.Response
             else
                 return Constants.RESULT_ERR;
 
-            
+
         }
     }
 }
